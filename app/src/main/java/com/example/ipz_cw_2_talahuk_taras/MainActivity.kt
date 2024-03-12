@@ -73,6 +73,28 @@ fun SignInScreen() {
         }
     }
 }
+@Composable
+fun SignInContent(onSignInClick: () -> Unit) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text("Sign In Screen", modifier = Modifier.padding(8.dp))
+
+        Button(
+            onClick = onSignInClick,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp)
+        ) {
+            Text("Sign In")
+        }
+    }
+}
+
 
 
 
