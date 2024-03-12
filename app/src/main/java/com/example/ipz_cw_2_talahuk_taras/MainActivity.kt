@@ -95,7 +95,29 @@ fun SignInContent(onSignInClick: () -> Unit) {
     }
 }
 
+@Composable
+fun SignInSuccessContent(email: String, onSignOutClick: () -> Unit) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text("Sign In success", modifier = Modifier.padding(8.dp))
 
+        Text("Email: $email", modifier = Modifier.padding(8.dp))
+
+        Button(
+            onClick = onSignOutClick,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp)
+        ) {
+            Text("Sign Out")
+        }
+    }
+}
 
 
 @Preview(showBackground = true)
