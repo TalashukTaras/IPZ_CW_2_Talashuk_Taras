@@ -43,7 +43,36 @@ sealed class SignInEvent {
     object SignOutClicked : SignInEvent()
 }
 
+@Composable
+fun SignInScreen() {
+    var signInState by remember { mutableStateOf<SignInState>(SignInState.SignIn) }
 
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        when (signInState) {
+            is SignInState.SignIn -> {
+                SignInContent(
+                    onSignInClick = {
+                        signInState = SignInState.SignInSuccess("user@example.com")
+                    }
+                )
+            }
+            is SignInState.SignInSuccess -> {
+                SignInSuccessContent(
+                    email = (signInState as SignInState.SignInSuccess).email,
+                    onSignOutClick = {
+                        signInState = SignInState.SignIn
+                    }
+                )
+            }
+        }
+    }
+}
 
 
 
@@ -51,6 +80,6 @@ sealed class SignInEvent {
 @Composable
 fun SignInScreenPreview() {
     IPZ_CW_2_Talahuk_TarasTheme {
-
+        SignInScreen()
     }
 }
